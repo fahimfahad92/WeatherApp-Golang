@@ -1,0 +1,7 @@
+{
+  "port": "8080",
+  "apiKey": "<api-key>",
+  "baseUrl": "https://api.weatherapi.com/v1",
+  "currentWeather": "/current.json",
+  "forecastWeather": "/forecast.json"
+}
