@@ -53,7 +53,7 @@ func (weather *WeatherHandler) ForecastWeather(w http.ResponseWriter, r *http.Re
 
 	baseUrl := viper.GetString("baseUrl")
 	apiKey := viper.GetString("apiKey")
-	currentWeather := viper.GetString("forecastWeather")
+	forecastWeather := viper.GetString("forecastWeather")
 
 	location, err := util.GetQueryParamAsString("location", r)
 	if err != nil {
@@ -62,7 +62,7 @@ func (weather *WeatherHandler) ForecastWeather(w http.ResponseWriter, r *http.Re
 	}
 
 	forecastUrl := fmt.Sprintf("%s%s?key=%s&q=%s&days=3&aqi=no&alerts=no",
-		baseUrl, currentWeather, apiKey, location)
+		baseUrl, forecastWeather, apiKey, location)
 
 	response, err := http.Get(forecastUrl)
 

@@ -1,6 +1,7 @@
 package application
 
 import (
+	"WeatherApp/config"
 	"WeatherApp/handler"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -11,7 +12,7 @@ func loadRoutes(a *App) {
 	router := chi.NewRouter()
 
 	router.Use(middleware.Logger)
-	router.Use(jsonContentType)
+	router.Use(config.JsonContentTypeHeader)
 
 	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
@@ -27,11 +28,4 @@ func (a *App) loadWeatherRoutes(router chi.Router) {
 
 	router.Get("/current", weatherHandler.CurrentWeather)
 	router.Get("/forecast", weatherHandler.ForecastWeather)
-}
-
-func jsonContentType(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Add("Content-Type", "application/json")
-		next.ServeHTTP(w, r)
-	})
 }

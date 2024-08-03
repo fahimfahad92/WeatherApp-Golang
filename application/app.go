@@ -22,7 +22,7 @@ func New() *App {
 func (a *App) Start(ctx context.Context) error {
 
 	port := fmt.Sprintf(":%s", viper.GetString("port"))
-	log.Printf("Server port is: %s\n", port)
+	log.Printf("Server starting at port: %s\n", port)
 
 	server := &http.Server{
 		Addr:    port,
